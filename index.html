@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Just a Clock</title>
+	<link rel="stylesheet" href="css/style.css">
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+<style>
+
+#container {
+    display: table;
+    width: 100%;
+}
+
+#tcell {
+    font-size: 10vw;
+
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+</style>
+
+</head>
+
+<body>
+    <div id="container">
+        <div id="tcell">
+
+            <div id="date">
+            </div>
+
+            <div id="clock">
+            </div>
+
+        </div>
+    </div>
+
+<script text="javascript">
+
+function toTwoDigits(n) {
+    var s = n.toString();
+    while (s.length < 2) {
+        s = "0" + s;
+    }
+    return s;
+}
+
+function resize() {
+    document.getElementById("container").style.height = window.innerHeight + "px";
+}
+
+window.setInterval(function() {
+    var d = new Date();
+    var s = toTwoDigits(d.getSeconds());
+    var m = toTwoDigits(d.getMinutes());
+    var h = toTwoDigits(d.getHours());
+    document.getElementById("clock").innerHTML = h + ":" + m + ":" + s;
+
+    document.getElementById("date").innerHTML = d.toDateString();
+}, 60);
+
+window.onresize = resize;
+
+// init
+resize();
+</script>
+
+</body>
+</html>
